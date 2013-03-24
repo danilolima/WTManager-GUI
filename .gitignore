@@ -19,6 +19,7 @@ local.properties
 .flexProperties
 .project
 .settings/*
+.model/WTManager_GUI.fml
 
 # External tool builders
 .externalToolBuilders/
