@@ -23,16 +23,16 @@ internal class _AtividadeEntityMetadata extends com.adobe.fiber.valueobjects.Abs
 {
     private static var emptyArray:Array = new Array();
 
-    model_internal static var allProperties:Array = new Array("id", "dataHoraEncerramento", "nome", "usuarioId", "descricao", "dataHoraCriacao", "tempoCollection");
+    model_internal static var allProperties:Array = new Array("id", "tempoList", "dataHoraEncerramento", "nome", "usuarioId", "descricao", "dataHoraCriacao");
     model_internal static var allAssociationProperties:Array = new Array();
     model_internal static var allRequiredProperties:Array = new Array();
-    model_internal static var allAlwaysAvailableProperties:Array = new Array("id", "dataHoraEncerramento", "nome", "usuarioId", "descricao", "dataHoraCriacao", "tempoCollection");
+    model_internal static var allAlwaysAvailableProperties:Array = new Array("id", "tempoList", "dataHoraEncerramento", "nome", "usuarioId", "descricao", "dataHoraCriacao");
     model_internal static var guardedProperties:Array = new Array();
-    model_internal static var dataProperties:Array = new Array("id", "dataHoraEncerramento", "nome", "usuarioId", "descricao", "dataHoraCriacao", "tempoCollection");
+    model_internal static var dataProperties:Array = new Array("id", "tempoList", "dataHoraEncerramento", "nome", "usuarioId", "descricao", "dataHoraCriacao");
     model_internal static var sourceProperties:Array = emptyArray
-    model_internal static var nonDerivedProperties:Array = new Array("id", "dataHoraEncerramento", "nome", "usuarioId", "descricao", "dataHoraCriacao", "tempoCollection");
+    model_internal static var nonDerivedProperties:Array = new Array("id", "tempoList", "dataHoraEncerramento", "nome", "usuarioId", "descricao", "dataHoraCriacao");
     model_internal static var derivedProperties:Array = new Array();
-    model_internal static var collectionProperties:Array = new Array("tempoCollection");
+    model_internal static var collectionProperties:Array = new Array("tempoList");
     model_internal static var collectionBaseMap:Object;
     model_internal static var entityName:String = "Atividade";
     model_internal static var dependentsOnMap:Object;
@@ -51,27 +51,27 @@ internal class _AtividadeEntityMetadata extends com.adobe.fiber.valueobjects.Abs
             // dependents map
             model_internal::dependentsOnMap = new Object();
             model_internal::dependentsOnMap["id"] = new Array();
+            model_internal::dependentsOnMap["tempoList"] = new Array();
             model_internal::dependentsOnMap["dataHoraEncerramento"] = new Array();
             model_internal::dependentsOnMap["nome"] = new Array();
             model_internal::dependentsOnMap["usuarioId"] = new Array();
             model_internal::dependentsOnMap["descricao"] = new Array();
             model_internal::dependentsOnMap["dataHoraCriacao"] = new Array();
-            model_internal::dependentsOnMap["tempoCollection"] = new Array();
 
             // collection base map
             model_internal::collectionBaseMap = new Object();
-            model_internal::collectionBaseMap["tempoCollection"] = "br.com.wtmanager.valueObjects.Tempo";
+            model_internal::collectionBaseMap["tempoList"] = "br.com.wtmanager.valueObjects.Tempo";
         }
 
         // Property type Map
         model_internal::propertyTypeMap = new Object();
         model_internal::propertyTypeMap["id"] = "int";
+        model_internal::propertyTypeMap["tempoList"] = "ArrayCollection";
         model_internal::propertyTypeMap["dataHoraEncerramento"] = "Date";
         model_internal::propertyTypeMap["nome"] = "String";
         model_internal::propertyTypeMap["usuarioId"] = "br.com.wtmanager.valueObjects.Usuario";
         model_internal::propertyTypeMap["descricao"] = "String";
         model_internal::propertyTypeMap["dataHoraCriacao"] = "Date";
-        model_internal::propertyTypeMap["tempoCollection"] = "ArrayCollection";
 
         model_internal::_instance = value;
     }
@@ -307,6 +307,12 @@ internal class _AtividadeEntityMetadata extends com.adobe.fiber.valueobjects.Abs
     }
 
     [Bindable(event="propertyChange")]
+    public function get isTempoListAvailable():Boolean
+    {
+        return true;
+    }
+
+    [Bindable(event="propertyChange")]
     public function get isDataHoraEncerramentoAvailable():Boolean
     {
         return true;
@@ -336,12 +342,6 @@ internal class _AtividadeEntityMetadata extends com.adobe.fiber.valueobjects.Abs
         return true;
     }
 
-    [Bindable(event="propertyChange")]
-    public function get isTempoCollectionAvailable():Boolean
-    {
-        return true;
-    }
-
 
     /**
      * derived property recalculation
@@ -354,6 +354,12 @@ internal class _AtividadeEntityMetadata extends com.adobe.fiber.valueobjects.Abs
 
     [Bindable(event="propertyChange")]   
     public function get idStyle():com.adobe.fiber.styles.Style
+    {
+        return model_internal::_nullStyle;
+    }
+
+    [Bindable(event="propertyChange")]   
+    public function get tempoListStyle():com.adobe.fiber.styles.Style
     {
         return model_internal::_nullStyle;
     }
@@ -384,12 +390,6 @@ internal class _AtividadeEntityMetadata extends com.adobe.fiber.valueobjects.Abs
 
     [Bindable(event="propertyChange")]   
     public function get dataHoraCriacaoStyle():com.adobe.fiber.styles.Style
-    {
-        return model_internal::_nullStyle;
-    }
-
-    [Bindable(event="propertyChange")]   
-    public function get tempoCollectionStyle():com.adobe.fiber.styles.Style
     {
         return model_internal::_nullStyle;
     }

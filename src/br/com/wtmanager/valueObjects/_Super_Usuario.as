@@ -31,8 +31,8 @@ public class _Super_Usuario extends flash.events.EventDispatcher implements com.
     model_internal static function initRemoteClassAliasAllRelated() : void
     {
         br.com.wtmanager.valueObjects.Atividade.initRemoteClassAliasSingleChild();
-        br.com.wtmanager.valueObjects.Usuario.initRemoteClassAliasSingleChild();
         br.com.wtmanager.valueObjects.Tempo.initRemoteClassAliasSingleChild();
+        br.com.wtmanager.valueObjects.Usuario.initRemoteClassAliasSingleChild();
     }
 
     model_internal var _dminternal_model : _UsuarioEntityMetadata;
@@ -53,8 +53,8 @@ public class _Super_Usuario extends flash.events.EventDispatcher implements com.
      * properties
      */
     private var _internal_id : int;
-    private var _internal_atividadeCollection : ArrayCollection;
-    model_internal var _internal_atividadeCollection_leaf:br.com.wtmanager.valueObjects.Atividade;
+    private var _internal_atividadeList : ArrayCollection;
+    model_internal var _internal_atividadeList_leaf:br.com.wtmanager.valueObjects.Atividade;
     private var _internal_chave : String;
     private var _internal_dataCriacao : Date;
     private var _internal_nome : String;
@@ -88,9 +88,9 @@ public class _Super_Usuario extends flash.events.EventDispatcher implements com.
     }
 
     [Bindable(event="propertyChange")]
-    public function get atividadeCollection() : ArrayCollection
+    public function get atividadeList() : ArrayCollection
     {
-        return _internal_atividadeCollection;
+        return _internal_atividadeList;
     }
 
     [Bindable(event="propertyChange")]
@@ -129,28 +129,28 @@ public class _Super_Usuario extends flash.events.EventDispatcher implements com.
         }
     }
 
-    public function set atividadeCollection(value:*) : void
+    public function set atividadeList(value:*) : void
     {
-        var oldValue:ArrayCollection = _internal_atividadeCollection;
+        var oldValue:ArrayCollection = _internal_atividadeList;
         if (oldValue !== value)
         {
             if (value is ArrayCollection)
             {
-                _internal_atividadeCollection = value;
+                _internal_atividadeList = value;
             }
             else if (value is Array)
             {
-                _internal_atividadeCollection = new ArrayCollection(value);
+                _internal_atividadeList = new ArrayCollection(value);
             }
             else if (value == null)
             {
-                _internal_atividadeCollection = null;
+                _internal_atividadeList = null;
             }
             else
             {
-                throw new Error("value of atividadeCollection must be a collection");
+                throw new Error("value of atividadeList must be a collection");
             }
-            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "atividadeCollection", oldValue, _internal_atividadeCollection));
+            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "atividadeList", oldValue, _internal_atividadeList));
         }
     }
 

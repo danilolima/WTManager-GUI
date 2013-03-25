@@ -31,9 +31,9 @@ public class _Super_Atividade extends flash.events.EventDispatcher implements co
 
     model_internal static function initRemoteClassAliasAllRelated() : void
     {
-        br.com.wtmanager.valueObjects.Usuario.initRemoteClassAliasSingleChild();
         br.com.wtmanager.valueObjects.Tempo.initRemoteClassAliasSingleChild();
         br.com.wtmanager.valueObjects.Atividade.initRemoteClassAliasSingleChild();
+        br.com.wtmanager.valueObjects.Usuario.initRemoteClassAliasSingleChild();
     }
 
     model_internal var _dminternal_model : _AtividadeEntityMetadata;
@@ -54,13 +54,13 @@ public class _Super_Atividade extends flash.events.EventDispatcher implements co
      * properties
      */
     private var _internal_id : int;
+    private var _internal_tempoList : ArrayCollection;
+    model_internal var _internal_tempoList_leaf:br.com.wtmanager.valueObjects.Tempo;
     private var _internal_dataHoraEncerramento : Date;
     private var _internal_nome : String;
     private var _internal_usuarioId : br.com.wtmanager.valueObjects.Usuario;
     private var _internal_descricao : String;
     private var _internal_dataHoraCriacao : Date;
-    private var _internal_tempoCollection : ArrayCollection;
-    model_internal var _internal_tempoCollection_leaf:br.com.wtmanager.valueObjects.Tempo;
 
     private static var emptyArray:Array = new Array();
 
@@ -88,6 +88,12 @@ public class _Super_Atividade extends flash.events.EventDispatcher implements co
     public function get id() : int
     {
         return _internal_id;
+    }
+
+    [Bindable(event="propertyChange")]
+    public function get tempoList() : ArrayCollection
+    {
+        return _internal_tempoList;
     }
 
     [Bindable(event="propertyChange")]
@@ -120,12 +126,6 @@ public class _Super_Atividade extends flash.events.EventDispatcher implements co
         return _internal_dataHoraCriacao;
     }
 
-    [Bindable(event="propertyChange")]
-    public function get tempoCollection() : ArrayCollection
-    {
-        return _internal_tempoCollection;
-    }
-
     public function clearAssociations() : void
     {
     }
@@ -141,6 +141,31 @@ public class _Super_Atividade extends flash.events.EventDispatcher implements co
         {
             _internal_id = value;
             this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "id", oldValue, _internal_id));
+        }
+    }
+
+    public function set tempoList(value:*) : void
+    {
+        var oldValue:ArrayCollection = _internal_tempoList;
+        if (oldValue !== value)
+        {
+            if (value is ArrayCollection)
+            {
+                _internal_tempoList = value;
+            }
+            else if (value is Array)
+            {
+                _internal_tempoList = new ArrayCollection(value);
+            }
+            else if (value == null)
+            {
+                _internal_tempoList = null;
+            }
+            else
+            {
+                throw new Error("value of tempoList must be a collection");
+            }
+            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "tempoList", oldValue, _internal_tempoList));
         }
     }
 
@@ -191,31 +216,6 @@ public class _Super_Atividade extends flash.events.EventDispatcher implements co
         {
             _internal_dataHoraCriacao = value;
             this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "dataHoraCriacao", oldValue, _internal_dataHoraCriacao));
-        }
-    }
-
-    public function set tempoCollection(value:*) : void
-    {
-        var oldValue:ArrayCollection = _internal_tempoCollection;
-        if (oldValue !== value)
-        {
-            if (value is ArrayCollection)
-            {
-                _internal_tempoCollection = value;
-            }
-            else if (value is Array)
-            {
-                _internal_tempoCollection = new ArrayCollection(value);
-            }
-            else if (value == null)
-            {
-                _internal_tempoCollection = null;
-            }
-            else
-            {
-                throw new Error("value of tempoCollection must be a collection");
-            }
-            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "tempoCollection", oldValue, _internal_tempoCollection));
         }
     }
 

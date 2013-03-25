@@ -22,16 +22,16 @@ internal class _UsuarioEntityMetadata extends com.adobe.fiber.valueobjects.Abstr
 {
     private static var emptyArray:Array = new Array();
 
-    model_internal static var allProperties:Array = new Array("id", "atividadeCollection", "chave", "dataCriacao", "nome");
+    model_internal static var allProperties:Array = new Array("id", "atividadeList", "chave", "dataCriacao", "nome");
     model_internal static var allAssociationProperties:Array = new Array();
     model_internal static var allRequiredProperties:Array = new Array();
-    model_internal static var allAlwaysAvailableProperties:Array = new Array("id", "atividadeCollection", "chave", "dataCriacao", "nome");
+    model_internal static var allAlwaysAvailableProperties:Array = new Array("id", "atividadeList", "chave", "dataCriacao", "nome");
     model_internal static var guardedProperties:Array = new Array();
-    model_internal static var dataProperties:Array = new Array("id", "atividadeCollection", "chave", "dataCriacao", "nome");
+    model_internal static var dataProperties:Array = new Array("id", "atividadeList", "chave", "dataCriacao", "nome");
     model_internal static var sourceProperties:Array = emptyArray
-    model_internal static var nonDerivedProperties:Array = new Array("id", "atividadeCollection", "chave", "dataCriacao", "nome");
+    model_internal static var nonDerivedProperties:Array = new Array("id", "atividadeList", "chave", "dataCriacao", "nome");
     model_internal static var derivedProperties:Array = new Array();
-    model_internal static var collectionProperties:Array = new Array("atividadeCollection");
+    model_internal static var collectionProperties:Array = new Array("atividadeList");
     model_internal static var collectionBaseMap:Object;
     model_internal static var entityName:String = "Usuario";
     model_internal static var dependentsOnMap:Object;
@@ -50,20 +50,20 @@ internal class _UsuarioEntityMetadata extends com.adobe.fiber.valueobjects.Abstr
             // dependents map
             model_internal::dependentsOnMap = new Object();
             model_internal::dependentsOnMap["id"] = new Array();
-            model_internal::dependentsOnMap["atividadeCollection"] = new Array();
+            model_internal::dependentsOnMap["atividadeList"] = new Array();
             model_internal::dependentsOnMap["chave"] = new Array();
             model_internal::dependentsOnMap["dataCriacao"] = new Array();
             model_internal::dependentsOnMap["nome"] = new Array();
 
             // collection base map
             model_internal::collectionBaseMap = new Object();
-            model_internal::collectionBaseMap["atividadeCollection"] = "br.com.wtmanager.valueObjects.Atividade";
+            model_internal::collectionBaseMap["atividadeList"] = "br.com.wtmanager.valueObjects.Atividade";
         }
 
         // Property type Map
         model_internal::propertyTypeMap = new Object();
         model_internal::propertyTypeMap["id"] = "int";
-        model_internal::propertyTypeMap["atividadeCollection"] = "ArrayCollection";
+        model_internal::propertyTypeMap["atividadeList"] = "ArrayCollection";
         model_internal::propertyTypeMap["chave"] = "String";
         model_internal::propertyTypeMap["dataCriacao"] = "Date";
         model_internal::propertyTypeMap["nome"] = "String";
@@ -302,7 +302,7 @@ internal class _UsuarioEntityMetadata extends com.adobe.fiber.valueobjects.Abstr
     }
 
     [Bindable(event="propertyChange")]
-    public function get isAtividadeCollectionAvailable():Boolean
+    public function get isAtividadeListAvailable():Boolean
     {
         return true;
     }
@@ -342,7 +342,7 @@ internal class _UsuarioEntityMetadata extends com.adobe.fiber.valueobjects.Abstr
     }
 
     [Bindable(event="propertyChange")]   
-    public function get atividadeCollectionStyle():com.adobe.fiber.styles.Style
+    public function get atividadeListStyle():com.adobe.fiber.styles.Style
     {
         return model_internal::_nullStyle;
     }
