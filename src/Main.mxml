@@ -1,8 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:WindowedApplication xmlns:fx="http://ns.adobe.com/mxml/2009" 
-					   xmlns:s="library://ns.adobe.com/flex/spark" 
-					   xmlns:mx="library://ns.adobe.com/flex/mx">
+<s:WindowedApplication xmlns:fx="http://ns.adobe.com/mxml/2009"
+					   xmlns:s="library://ns.adobe.com/flex/spark"
+					   xmlns:mx="library://ns.adobe.com/flex/mx"
+					   xmlns:services="br.com.wtmanager.services.*"
+					   xmlns:valueObjects="br.com.wtmanager.valueObjects.*"
+					   creationComplete="initApp(event)" width="800" height="600">
 	<fx:Declarations>
-		<!-- Place non-visual elements (e.g., services, value objects) here -->
+		
+		<valueObjects:Usuario id="usuario"/>
+		<s:CallResponder id="getUsuarioResult" result="usuario = getUsuarioResult.lastResult as Usuario"/>
+		
+		<services:UsuarioService id="usuarioService"
+								 fault="Alert.show(event.fault.faultString + '\n' + event.fault.faultDetail)"
+								 showBusyCursor="true"/>
+		
+		<s:CallResponder id="adicionaTempoResult"/>
+		
+		
+		
 	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import br.com.wtmanager.valueObjects.Atividade;
+			import br.com.wtmanager.valueObjects.Tempo;
+			
+			import mx.collections.ArrayList;
+			import mx.controls.Alert;
+			import mx.events.FlexEvent;
+			
+			import spark.events.IndexChangeEvent;
+			
+			[Bindable]
+			public var listaTempos:ArrayList = new ArrayList();
+			
+			protected function initApp(event:FlexEvent):void
+			{
+				getUsuarioResult.token = usuarioService.getUsuario("123456");
+			}
+			
+			
+			protected function criaTempo(event:IndexChangeEvent):void
+			{
+				var data:Date = new Date();
+				var atividade:Atividade = event.currentTarget.selectedItem;
+				var tempo:Tempo = new Tempo();
+				tempo.inicio = data;
+				tempo.atividadeId = atividade;
+				
+				if(listaTempos.length > 0){
+					var indicesTotais:int = listaTempos.length;
+					var tempoAnterior:Tempo = listaTempos.getItemAt(indicesTotais - 1) as Tempo;
+					tempoAnterior.fim = data;
+					this.adicionaTempo(tempoAnterior);
+				}
+
+				listaTempos.addItem(tempo);
+			}
+			
+			
+			protected function adicionaTempo(arg0:Tempo):void
+			{
+				adicionaTempoResult.token = usuarioService.adicionaTempo(arg0);
+			}
+			
+		]]>
+	</fx:Script>
+
+	<s:Label x="10" y="10" text="{usuario.nome}"/>
+	<s:DropDownList x="10" y="25" dataProvider="{usuario.atividadeList}" labelField="nome" change="criaTempo(event)"  />
+	<s:DataGrid x="10" y="50" width="700" height="200" dataProvider="{listaTempos}">
+		<s:columns>
+			<s:ArrayList>
+				<s:GridColumn dataField="atividadeId.nome" headerText="Atividade"/>
+				<s:GridColumn dataField="inicio" headerText="Início"/>
+				<s:GridColumn dataField="fim" headerText="Fim"/>
+			</s:ArrayList>
+		</s:columns>
+	</s:DataGrid>
 </s:WindowedApplication>
