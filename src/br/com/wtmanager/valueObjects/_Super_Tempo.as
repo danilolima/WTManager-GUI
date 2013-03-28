@@ -25,7 +25,17 @@ public class _Super_Tempo extends flash.events.EventDispatcher implements com.ad
 {
     model_internal static function initRemoteClassAliasSingle(cz:Class) : void
     {
-        flash.net.registerClassAlias("br.com.wt.entities.Tempo", cz);
+        try
+        {
+            if (flash.net.getClassByAlias("br.com.wt.entities.Tempo") == null)
+            {
+                flash.net.registerClassAlias("br.com.wt.entities.Tempo", cz);
+            }
+        }
+        catch (e:Error)
+        {
+            flash.net.registerClassAlias("br.com.wt.entities.Tempo", cz);
+        }
     }
 
     model_internal static function initRemoteClassAliasAllRelated() : void
@@ -172,7 +182,6 @@ public class _Super_Tempo extends flash.events.EventDispatcher implements com.ad
     /**
      * derived property calculators
      */
-    
 
     /**
      * isValid calculator

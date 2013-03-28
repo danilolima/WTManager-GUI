@@ -25,14 +25,24 @@ public class _Super_Usuario extends flash.events.EventDispatcher implements com.
 {
     model_internal static function initRemoteClassAliasSingle(cz:Class) : void
     {
-        flash.net.registerClassAlias("br.com.wt.entities.Usuario", cz);
+        try
+        {
+            if (flash.net.getClassByAlias("br.com.wt.entities.Usuario") == null)
+            {
+                flash.net.registerClassAlias("br.com.wt.entities.Usuario", cz);
+            }
+        }
+        catch (e:Error)
+        {
+            flash.net.registerClassAlias("br.com.wt.entities.Usuario", cz);
+        }
     }
 
     model_internal static function initRemoteClassAliasAllRelated() : void
     {
         br.com.wtmanager.valueObjects.Atividade.initRemoteClassAliasSingleChild();
-        br.com.wtmanager.valueObjects.Tempo.initRemoteClassAliasSingleChild();
         br.com.wtmanager.valueObjects.Usuario.initRemoteClassAliasSingleChild();
+        br.com.wtmanager.valueObjects.Tempo.initRemoteClassAliasSingleChild();
     }
 
     model_internal var _dminternal_model : _UsuarioEntityMetadata;
@@ -55,8 +65,8 @@ public class _Super_Usuario extends flash.events.EventDispatcher implements com.
     private var _internal_id : int;
     private var _internal_atividadeList : ArrayCollection;
     model_internal var _internal_atividadeList_leaf:br.com.wtmanager.valueObjects.Atividade;
-    private var _internal_chave : String;
     private var _internal_dataCriacao : Date;
+    private var _internal_chave : String;
     private var _internal_nome : String;
 
     private static var emptyArray:Array = new Array();
@@ -94,15 +104,15 @@ public class _Super_Usuario extends flash.events.EventDispatcher implements com.
     }
 
     [Bindable(event="propertyChange")]
-    public function get chave() : String
-    {
-        return _internal_chave;
-    }
-
-    [Bindable(event="propertyChange")]
     public function get dataCriacao() : Date
     {
         return _internal_dataCriacao;
+    }
+
+    [Bindable(event="propertyChange")]
+    public function get chave() : String
+    {
+        return _internal_chave;
     }
 
     [Bindable(event="propertyChange")]
@@ -154,16 +164,6 @@ public class _Super_Usuario extends flash.events.EventDispatcher implements com.
         }
     }
 
-    public function set chave(value:String) : void
-    {
-        var oldValue:String = _internal_chave;
-        if (oldValue !== value)
-        {
-            _internal_chave = value;
-            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "chave", oldValue, _internal_chave));
-        }
-    }
-
     public function set dataCriacao(value:Date) : void
     {
         var oldValue:Date = _internal_dataCriacao;
@@ -171,6 +171,16 @@ public class _Super_Usuario extends flash.events.EventDispatcher implements com.
         {
             _internal_dataCriacao = value;
             this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "dataCriacao", oldValue, _internal_dataCriacao));
+        }
+    }
+
+    public function set chave(value:String) : void
+    {
+        var oldValue:String = _internal_chave;
+        if (oldValue !== value)
+        {
+            _internal_chave = value;
+            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "chave", oldValue, _internal_chave));
         }
     }
 
@@ -207,7 +217,6 @@ public class _Super_Usuario extends flash.events.EventDispatcher implements com.
     /**
      * derived property calculators
      */
-    
 
     /**
      * isValid calculator

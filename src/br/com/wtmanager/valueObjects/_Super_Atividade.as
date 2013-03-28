@@ -26,14 +26,24 @@ public class _Super_Atividade extends flash.events.EventDispatcher implements co
 {
     model_internal static function initRemoteClassAliasSingle(cz:Class) : void
     {
-        flash.net.registerClassAlias("br.com.wt.entities.Atividade", cz);
+        try
+        {
+            if (flash.net.getClassByAlias("br.com.wt.entities.Atividade") == null)
+            {
+                flash.net.registerClassAlias("br.com.wt.entities.Atividade", cz);
+            }
+        }
+        catch (e:Error)
+        {
+            flash.net.registerClassAlias("br.com.wt.entities.Atividade", cz);
+        }
     }
 
     model_internal static function initRemoteClassAliasAllRelated() : void
     {
+        br.com.wtmanager.valueObjects.Usuario.initRemoteClassAliasSingleChild();
         br.com.wtmanager.valueObjects.Tempo.initRemoteClassAliasSingleChild();
         br.com.wtmanager.valueObjects.Atividade.initRemoteClassAliasSingleChild();
-        br.com.wtmanager.valueObjects.Usuario.initRemoteClassAliasSingleChild();
     }
 
     model_internal var _dminternal_model : _AtividadeEntityMetadata;
@@ -53,12 +63,14 @@ public class _Super_Atividade extends flash.events.EventDispatcher implements co
     /**
      * properties
      */
+    private var _internal_usuarioId : br.com.wtmanager.valueObjects.Usuario;
     private var _internal_id : int;
     private var _internal_tempoList : ArrayCollection;
     model_internal var _internal_tempoList_leaf:br.com.wtmanager.valueObjects.Tempo;
     private var _internal_dataHoraEncerramento : Date;
+    private var _internal_usuarioList : ArrayCollection;
+    model_internal var _internal_usuarioList_leaf:br.com.wtmanager.valueObjects.Usuario;
     private var _internal_nome : String;
-    private var _internal_usuarioId : br.com.wtmanager.valueObjects.Usuario;
     private var _internal_descricao : String;
     private var _internal_dataHoraCriacao : Date;
 
@@ -85,6 +97,12 @@ public class _Super_Atividade extends flash.events.EventDispatcher implements co
      */
 
     [Bindable(event="propertyChange")]
+    public function get usuarioId() : br.com.wtmanager.valueObjects.Usuario
+    {
+        return _internal_usuarioId;
+    }
+
+    [Bindable(event="propertyChange")]
     public function get id() : int
     {
         return _internal_id;
@@ -103,15 +121,15 @@ public class _Super_Atividade extends flash.events.EventDispatcher implements co
     }
 
     [Bindable(event="propertyChange")]
-    public function get nome() : String
+    public function get usuarioList() : ArrayCollection
     {
-        return _internal_nome;
+        return _internal_usuarioList;
     }
 
     [Bindable(event="propertyChange")]
-    public function get usuarioId() : br.com.wtmanager.valueObjects.Usuario
+    public function get nome() : String
     {
-        return _internal_usuarioId;
+        return _internal_nome;
     }
 
     [Bindable(event="propertyChange")]
@@ -133,6 +151,16 @@ public class _Super_Atividade extends flash.events.EventDispatcher implements co
     /**
      * data/source property setters
      */
+
+    public function set usuarioId(value:br.com.wtmanager.valueObjects.Usuario) : void
+    {
+        var oldValue:br.com.wtmanager.valueObjects.Usuario = _internal_usuarioId;
+        if (oldValue !== value)
+        {
+            _internal_usuarioId = value;
+            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "usuarioId", oldValue, _internal_usuarioId));
+        }
+    }
 
     public function set id(value:int) : void
     {
@@ -179,6 +207,31 @@ public class _Super_Atividade extends flash.events.EventDispatcher implements co
         }
     }
 
+    public function set usuarioList(value:*) : void
+    {
+        var oldValue:ArrayCollection = _internal_usuarioList;
+        if (oldValue !== value)
+        {
+            if (value is ArrayCollection)
+            {
+                _internal_usuarioList = value;
+            }
+            else if (value is Array)
+            {
+                _internal_usuarioList = new ArrayCollection(value);
+            }
+            else if (value == null)
+            {
+                _internal_usuarioList = null;
+            }
+            else
+            {
+                throw new Error("value of usuarioList must be a collection");
+            }
+            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "usuarioList", oldValue, _internal_usuarioList));
+        }
+    }
+
     public function set nome(value:String) : void
     {
         var oldValue:String = _internal_nome;
@@ -186,16 +239,6 @@ public class _Super_Atividade extends flash.events.EventDispatcher implements co
         {
             _internal_nome = value;
             this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "nome", oldValue, _internal_nome));
-        }
-    }
-
-    public function set usuarioId(value:br.com.wtmanager.valueObjects.Usuario) : void
-    {
-        var oldValue:br.com.wtmanager.valueObjects.Usuario = _internal_usuarioId;
-        if (oldValue !== value)
-        {
-            _internal_usuarioId = value;
-            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "usuarioId", oldValue, _internal_usuarioId));
         }
     }
 
@@ -242,7 +285,6 @@ public class _Super_Atividade extends flash.events.EventDispatcher implements co
     /**
      * derived property calculators
      */
-    
 
     /**
      * isValid calculator
