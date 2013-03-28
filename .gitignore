@@ -20,6 +20,8 @@ local.properties
 .project
 .settings/*
 .model/WTManager_GUI.fml
+resources/*
+
 
 # External tool builders
 .externalToolBuilders/
